@@ -41,12 +41,13 @@ pipeline {
         }
 
         stage('DeployToProduction') {
-            input 'Wait for interactive input'
-            milestone(1)
             when {
                 branch 'master'
             }
             steps {
+                input 'Wait for interactive input'
+                milestone(1)
+
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
                             failOnError: true,
