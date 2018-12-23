@@ -41,7 +41,7 @@ pipeline {
         }
 
         stage('DeployToProduction') {
-            input message: "Wait for interactive input"
+            input "Wait for interactive input"
             milestone(1)
             when {
                 branch 'master'
